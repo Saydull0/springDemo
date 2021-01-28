@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class User {
 
     @Transient
-    static final String sequence = "user_id_sec";
+    static final String sequence = "sys_user_id_seq";
 
     @Id
     @SequenceGenerator(name= sequence, sequenceName = sequence, allocationSize = 1)
@@ -72,5 +72,17 @@ public class User {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                '}';
     }
 }
