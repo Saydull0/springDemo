@@ -10,8 +10,6 @@ import java.util.List;
 @RestController
 public class TestController {
 
-
-
    final UserService userService;
 
     public TestController(UserService userService) {
@@ -33,7 +31,15 @@ public class TestController {
         return Arrays.asList(userList.toString());
     }
 
+    @PostMapping("/new")
+    public void newUser(@RequestBody User user){
+        userService.newUser(user);
+    }
 
+    @GetMapping("/view/{username}")
+    public String getOneUser(@PathVariable("username") String username){
+        return  userService.getOneUser(username);
+    }
 
 
 
