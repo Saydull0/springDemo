@@ -46,6 +46,26 @@ public class UserService {
             userRepository.save(user);
         }
 
+    }
 
+    public String deleteUser(Long id) {
+
+        Optional<User> optionalUser = userRepository.findById(id);
+
+        if(optionalUser.isPresent()){
+            String username = optionalUser.get().getUsername();
+            userRepository.delete(optionalUser.get());
+            return username + " deleted !" ;
+        }else{
+            return "User not found";
+        }
+
+    }
+
+    public List<User> getUserByAge(Integer age) {
+
+        List userList = userRepository.findAllByAge(age);
+
+        return userList;
     }
 }

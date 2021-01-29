@@ -1,5 +1,6 @@
 package uz.bootcamp.lesson1.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import uz.bootcamp.lesson1.entities.User;
 import uz.bootcamp.lesson1.services.UserService;
@@ -10,7 +11,7 @@ import java.util.List;
 @RestController
 public class TestController {
 
-   final UserService userService;
+    final UserService userService;
 
     public TestController(UserService userService) {
         this.userService = userService;
@@ -39,6 +40,17 @@ public class TestController {
     @GetMapping("/view/{username}")
     public String getOneUser(@PathVariable("username") String username){
         return  userService.getOneUser(username);
+    }
+
+    @GetMapping("/view/age/{age}")
+    public String getUserByAge(@PathVariable("age") Integer age){
+        List<User> list =  userService.getUserByAge(age);
+        return list.toString();
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") Long id){
+        return userService.deleteUser(id);
     }
 
 
